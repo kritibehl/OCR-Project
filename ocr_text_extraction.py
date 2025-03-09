@@ -14,19 +14,21 @@ def extract_text(image_path):
     
     # Convert image to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    
+
     # Perform OCR
-    extracted_text = pytesseract.image_to_string(gray, config="--psm 6")
-    
+    extracted_text = pytesseract.image_to_string(gray, config="--psm 6 --oem 3")
+
     return extracted_text.strip()
 
 # Image path
-image_path = "sample.jpg"
+image_path = "/Users/kritibehl/Desktop/projects/OCR/sample.jpg"  # Update with the correct path
 
 # Run OCR and print detected text
 text = extract_text(image_path)
+
 if text:
-    print("\nDetected Text:\n")
+    print("Extracted Text:")
     print(text)
+    
 else:
     print("\nNo text detected.")
